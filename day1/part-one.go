@@ -2,19 +2,12 @@ package main
 
 import (
 	"fmt"
-	"os"
 	"strconv"
 	"strings"
 )
 
-func main() {
-	inputStr, err := os.ReadFile("input.txt")
-	if err != nil {
-		fmt.Printf("%s: Error reading file", err)
-		return
-	}
-
-	ops := strings.Split(string(inputStr), "\n")
+func partOne(str []byte) {
+	ops := strings.Split(string(str), "\n")
 
 	pos := 50
 	solution := 0
@@ -28,7 +21,7 @@ func main() {
 		if direction == "R" {
 			pos += int(distance)
 		}
-		fmt.Println(val, distance, direction, pos%99)
+		// fmt.Println(val, distance, direction, pos%100)
 		if pos%100 == 0 {
 			solution++
 		}
