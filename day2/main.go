@@ -3,14 +3,12 @@ package main
 import (
 	"fmt"
 	"os"
-	"strconv"
 	"strings"
 )
 
 func main() {
 	// Get a a string
 	inputStr, err := os.ReadFile("part1-input.txt")
-	solution := 0
 	if err != nil {
 		fmt.Printf("%s: Error reading file", err)
 		return
@@ -18,33 +16,7 @@ func main() {
 
 	entries := strings.Split(string(inputStr), ",")
 
-	for _, entry := range entries {
-		lower, _ := strconv.ParseInt(strings.Split(entry, "-")[0], 0, 0)
-		upper, _ := strconv.ParseInt(strings.Split(entry, "-")[1], 0, 0)
+	//partOne(entries)
+	partTwo(entries)
 
-		fmt.Println(lower, upper)
-
-		for i := lower; i <= upper; i++ {
-			if isTwoOfTheSame(strconv.FormatInt(i, 10)) {
-				solution += int(i)
-			}
-		}
-	}
-	fmt.Println(solution)
-}
-
-func isTwoOfTheSame(s string) bool {
-	l := len(s)
-	if l%2 != 0 {
-		return false
-	}
-	firstHalf := s[:len(s)/2]
-	secondHalf := s[len(s)/2:]
-
-	if firstHalf == secondHalf {
-		return true
-	}
-
-	fmt.Println("first and second", firstHalf, secondHalf)
-	return false
 }
